@@ -21,18 +21,19 @@ namespace MadreDeDiosAdventureFileManager.Tests
             map.Should().NotBeNull();
         }
 
-        //[Fact]
-        //public void Should_convert_file_content_to_MadreDeDios_map()
-        //{
-        //    // Given :
-        //    var fileReader = Substitute.For<IFileReader>();
-        //    var fileConverter = new FileConverter(fileReader);
+        [Theory]
+        [InlineData("C - 3 - 4", 3)]
+        [InlineData("C - 7 - 4", 7)]
+        public void Should_map_witdh_of_map(string stringContent, int expectedWidth)
+        {
+            // Given :
+            var stringMapper = new StringMapper(stringContent);
 
-        //    // When :
-        //    Map map = fileConverter.Convert();
+            // When :
+            Map map = stringMapper.Map();
 
-        //    // Then :
-        //    map.Should().NotBeNull();
-        //}
+            // Then :
+            map.Width.Should().Be(expectedWidth);
+        }
     }
 }

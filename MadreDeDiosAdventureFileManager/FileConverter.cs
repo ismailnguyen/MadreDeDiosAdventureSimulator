@@ -4,7 +4,7 @@ namespace MadreDeDiosAdventureFileManager
 {
     public class FileConverter
     {
-        private IFileReader _fileReader;
+        private readonly IFileReader _fileReader;
 
         public FileConverter(IFileReader fileReader)
         {

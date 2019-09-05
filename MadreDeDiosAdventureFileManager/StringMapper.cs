@@ -4,16 +4,24 @@ namespace MadreDeDiosAdventureFileManager
 {
     public class StringMapper
     {
-        private string content;
+        private readonly string _content;
 
         public StringMapper(string content)
         {
-            this.content = content;
+            _content = content;
         }
 
         public Map Map()
         {
-            return new Map();
+            string[] elements = _content.Split(" - ");
+
+            int width = 0;
+            int.TryParse(elements[1], out width);
+
+            return new Map
+            {
+                Width = width
+            };
         }
     }
 }
