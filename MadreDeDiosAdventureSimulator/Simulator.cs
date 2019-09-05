@@ -1,4 +1,6 @@
-﻿using MadreDeDiosAdventure;
+﻿using System;
+using System.Linq;
+using MadreDeDiosAdventure;
 
 namespace MadreDeDiosAdventureSimulator
 {
@@ -36,6 +38,14 @@ namespace MadreDeDiosAdventureSimulator
                         // Update axis
                         if (orientation.Equals(Orientation.North))
                         {
+                            if (IsMountain(horizontalAxis, verticalAxis-1))
+                                continue;
+
+                            if (IsTreasure(horizontalAxis, verticalAxis - 1))
+                            {
+                                adventurer.FoundTreasuresCount++;
+                            }
+
                             verticalAxis--;
                         }
                         else if (orientation.Equals(Orientation.South))
@@ -57,6 +67,16 @@ namespace MadreDeDiosAdventureSimulator
                 adventurer.VerticalAxis = verticalAxis;
                 adventurer.Orientation = orientation;
             }
+        }
+
+        private bool IsTreasure(int horizontalAxis, int verticalAxis)
+        {
+            return Map.Treasures.Any(treasure => treasure.HorizontalAxis == horizontalAxis && treasure.VerticalAxis == verticalAxis);
+        }
+
+        private bool IsMountain(int horizontalAxis, int verticalAxis)
+        {
+            return Map.Mountains.Any(mountain => mountain.HorizontalAxis == horizontalAxis && mountain.VerticalAxis == verticalAxis);
         }
     }
 }
