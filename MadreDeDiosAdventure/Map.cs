@@ -6,12 +6,26 @@ namespace MadreDeDiosAdventure
 {
     public class Map
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public int Width { get; }
+        public int Height { get; }
 
-        public IEnumerable<Mountain> Mountains { get; set; }
-        public IEnumerable<Treasure> Treasures { get; set; }
-        public IEnumerable<Adventurer> Adventurers { get; set; }
+        public IEnumerable<Mountain> Mountains { get; }
+        public IEnumerable<Treasure> Treasures { get; }
+        public IEnumerable<Adventurer> Adventurers { get; }
+
+        public Map(
+            int width, 
+            int height,
+            IEnumerable<Mountain> mountains,
+            IEnumerable<Treasure> treasures,
+            IEnumerable<Adventurer> adventurers)
+        {
+            Width = width;
+            Height = height;
+            Mountains = mountains;
+            Treasures = treasures;
+            Adventurers = adventurers;
+        }
 
         public override bool Equals(object obj)
         {

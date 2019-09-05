@@ -5,11 +5,11 @@ namespace MadreDeDiosAdventure
 {
     public class Adventurer
     {
-        private readonly string _name;
-        private readonly int _horizontalAxis;
-        private readonly int _verticalAxis;
-        private readonly Orientation _orientation;
-        private readonly IEnumerable<Motion> _motionSequence;
+        public string Name { get; }
+        public int HorizontalAxis { get; }
+        public int VerticalAxis { get; }
+        public Orientation Orientation { get; }
+        public IEnumerable<Motion> MotionSequence { get; }
 
         public Adventurer(
             string name, 
@@ -19,11 +19,11 @@ namespace MadreDeDiosAdventure
             IEnumerable<Motion> motionSequence
         )
         {
-            _name = name;
-            _horizontalAxis = horizontalAxis;
-            _verticalAxis = verticalAxis;
-            _orientation = orientation;
-            _motionSequence = motionSequence;
+            Name = name;
+            HorizontalAxis = horizontalAxis;
+            VerticalAxis = verticalAxis;
+            Orientation = orientation;
+            MotionSequence = motionSequence;
         }
 
         public override bool Equals(object obj)
@@ -36,12 +36,12 @@ namespace MadreDeDiosAdventure
 
             var adventurer = obj as Adventurer;
 
-            return _name.Equals(adventurer._name);
+            return Name.Equals(adventurer.Name);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_name);
+            return HashCode.Combine(Name);
         }
     }
 }

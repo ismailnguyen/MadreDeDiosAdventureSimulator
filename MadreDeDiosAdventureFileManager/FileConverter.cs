@@ -15,7 +15,7 @@ namespace MadreDeDiosAdventureFileManager
         {
             _fileReader.Read();
 
-            return new Map();
+            return new Map(0, 0, null, null, null);
         }
     }
 }

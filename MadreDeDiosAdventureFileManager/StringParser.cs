@@ -66,13 +66,13 @@ namespace MadreDeDiosAdventureFileManager
             }
 
             return new Map
-            {
-                Width = width,
-                Height = height,
-                Mountains = mountains,
-                Treasures = treasures,
-                Adventurers = adventurers
-            };
+            (
+                width,
+                height,
+                mountains,
+                treasures,
+                adventurers
+            );
         }
 
         private Orientation ParseOrientation(string orientationString)

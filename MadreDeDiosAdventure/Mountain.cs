@@ -4,13 +4,13 @@ namespace MadreDeDiosAdventure
 {
     public class Mountain
     {
-        private readonly int _horizontalAxis;
-        private readonly int _verticalAxis;
+        public int HorizontalAxis { get; }
+        public int VerticalAxis { get; }
 
         public Mountain(int horizontalAxis, int verticalAxis)
         {
-            _horizontalAxis = horizontalAxis;
-            _verticalAxis = verticalAxis;
+            HorizontalAxis = horizontalAxis;
+            VerticalAxis = verticalAxis;
         }
 
         public override bool Equals(object obj)
@@ -23,13 +23,13 @@ namespace MadreDeDiosAdventure
 
             var moutain = obj as Mountain;
 
-            return _horizontalAxis == moutain._horizontalAxis
-                && _verticalAxis == moutain._verticalAxis;
+            return HorizontalAxis == moutain.HorizontalAxis
+                && VerticalAxis == moutain.VerticalAxis;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_horizontalAxis, _verticalAxis);
+            return HashCode.Combine(HorizontalAxis, VerticalAxis);
         }
     }
 }

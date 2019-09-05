@@ -134,20 +134,20 @@ A - Lara - 1 - 1 - S - AADADAGGA";
 
             // Then :
             Map expectedMap = new Map
-            {
-                Width = 3,
-                Height = 4,
-                Mountains = new List<Mountain>
+            (
+                3,
+                4,
+                new List<Mountain>
                 {
                     new Mountain(1, 0),
                     new Mountain(2, 1)
                 },
-                Treasures = new List<Treasure>
+                new List<Treasure>
                 {
                     new Treasure(0, 3, 2),
                     new Treasure(1, 3, 3)
                 },
-                Adventurers = new List<Adventurer>
+                new List<Adventurer>
                 {
                     new Adventurer(
                         "Lara",
@@ -168,7 +168,7 @@ A - Lara - 1 - 1 - S - AADADAGGA";
                         }
                     )
                 }
-            };
+            );
 
             map.Should().Be(expectedMap);
         }
