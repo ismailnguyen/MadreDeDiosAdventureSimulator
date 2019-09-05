@@ -32,11 +32,22 @@ namespace MadreDeDiosAdventureFileManager
                 mountains.Add(new Mountain(horizontalAxis, verticalAxis));
             }
 
+            var treasures = new List<Treasure>();
+            if (elements[0] == "T")
+            {
+                int.TryParse(elements[1], out int horizontalAxis);
+                int.TryParse(elements[2], out int verticalAxis);
+                int.TryParse(elements[3], out int count);
+
+                treasures.Add(new Treasure(horizontalAxis, verticalAxis, count));
+            }
+
             return new Map
             {
                 Width = width,
                 Height = height,
-                Mountains = mountains
+                Mountains = mountains,
+                Treasures = treasures
             };
         }
     }

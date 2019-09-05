@@ -8,5 +8,6 @@ namespace MadreDeDiosAdventure
         public int Height { get; set; }
 
         public IEnumerable<Mountain> Mountains { get; set; }
+        public IEnumerable<Treasure> Treasures { get; set; }
     }
 }
