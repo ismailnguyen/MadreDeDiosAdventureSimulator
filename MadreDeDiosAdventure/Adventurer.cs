@@ -6,11 +6,11 @@ namespace MadreDeDiosAdventure
     public class Adventurer
     {
         public string Name { get; }
-        public int HorizontalAxis { get; }
-        public int VerticalAxis { get; }
-        public Orientation Orientation { get; }
+        public int HorizontalAxis { get; set; }
+        public int VerticalAxis { get; set; }
+        public Orientation Orientation { get; set; }
         public IEnumerable<Motion> MotionSequence { get; }
-        public int FoundTreasuresCount { get; private set; }
+        public int FoundTreasuresCount { get; set; }
 
         public Adventurer(
             string name, 

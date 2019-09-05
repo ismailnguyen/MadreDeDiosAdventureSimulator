@@ -1,5 +1,4 @@
 ﻿using MadreDeDiosAdventure;
-using System;
 
 namespace MadreDeDiosAdventureSimulator
 {
@@ -16,8 +15,8 @@ namespace MadreDeDiosAdventureSimulator
         {
             foreach (var adventurer in Map.Adventurers)
             {
-                int initialHorizontalAxis = adventurer.HorizontalAxis;
-                int initialVerticalAxis = adventurer.VerticalAxis;
+                int horizontalAxis = adventurer.HorizontalAxis;
+                int verticalAxis = adventurer.VerticalAxis;
                 Orientation orientation = adventurer.Orientation;
 
                 foreach (var motion in adventurer.MotionSequence)
@@ -35,8 +34,28 @@ namespace MadreDeDiosAdventureSimulator
                     else if (motion == Motion.MoveForward)
                     {
                         // Update axis
+                        if (orientation.Equals(Orientation.North))
+                        {
+                            verticalAxis--;
+                        }
+                        else if (orientation.Equals(Orientation.South))
+                        {
+                            verticalAxis++;
+                        }
+                        else if (orientation.Equals(Orientation.Est))
+                        {
+                            horizontalAxis++;
+                        }
+                        else if (orientation.Equals(Orientation.West))
+                        {
+                            horizontalAxis--;
+                        }
                     }
                 }
+
+                adventurer.HorizontalAxis = horizontalAxis;
+                adventurer.VerticalAxis = verticalAxis;
+                adventurer.Orientation = orientation;
             }
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace MadreDeDiosAdventure
+﻿using System;
+
+namespace MadreDeDiosAdventure
 {
     public class Orientation
     {
@@ -16,6 +18,24 @@
             _name = name;
             Left = left;
             Right = right;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            if (!(obj is Orientation))
+                return false;
+
+            var orientation = obj as Orientation;
+
+            return _name.Equals(orientation._name);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_name);
         }
     }
 }
