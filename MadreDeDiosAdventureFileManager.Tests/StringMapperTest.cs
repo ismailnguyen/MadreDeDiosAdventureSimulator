@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using MadreDeDiosAdventure;
 using NSubstitute;
+using System.Collections.Generic;
 using Xunit;
 
 namespace MadreDeDiosAdventureFileManager.Tests
@@ -79,6 +80,41 @@ namespace MadreDeDiosAdventureFileManager.Tests
 
             // Then :
             map.Treasures.Should().Contain(new Treasure(expectedHorizontalAxis, expectedVerticalAxis, expectedCount));
+        }
+
+        [Fact]
+        public void Should_map_adventurers_of_map()
+        {
+            // Given :
+            string stringContent = "A - Indiana - 1 - 1 - S - AADADA";
+            var stringMapper = new StringMapper(stringContent);
+
+            // When :
+            Map map = stringMapper.Map();
+
+            // Then :
+            string expectedName = "Indiana";
+            int expectedHorizontalAxis = 1;
+            int expectedVerticalAxis = 1;
+            Orientation expectedOrientation = Orientation.South;
+            IEnumerable<Motion> expectedMotionSequence = new List<Motion>
+            {
+                Motion.MoveForward,
+                Motion.MoveForward,
+                Motion.TurnRight,
+                Motion.MoveForward,
+                Motion.TurnRight,
+                Motion.MoveForward,
+            };
+
+            map.Adventurers.Should().Contain(
+                new Adventurer(
+                    expectedName,
+                    expectedHorizontalAxis,
+                    expectedVerticalAxis,
+                    expectedOrientation,
+                    expectedMotionSequence
+                ));
         }
     }
 }

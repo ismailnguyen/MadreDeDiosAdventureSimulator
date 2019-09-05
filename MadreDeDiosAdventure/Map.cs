@@ -9,5 +9,6 @@ namespace MadreDeDiosAdventure
 
         public IEnumerable<Mountain> Mountains { get; set; }
         public IEnumerable<Treasure> Treasures { get; set; }
+        public IEnumerable<Adventurer> Adventurers { get; set; }
     }
 }
