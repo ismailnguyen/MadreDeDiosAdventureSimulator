@@ -1,6 +1,5 @@
-using FluentAssertions;
-using System;
 using Xunit;
+using FluentAssertions;
 
 namespace MadreDeDiosAdventureFileManager.Tests
 {

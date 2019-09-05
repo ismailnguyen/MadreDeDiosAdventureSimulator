@@ -2,7 +2,7 @@
 
 namespace MadreDeDiosAdventureFileManager
 {
-    public class FileReader
+    public class FileReader : IFileReader
     {
         private readonly string _inputFileName;
 
