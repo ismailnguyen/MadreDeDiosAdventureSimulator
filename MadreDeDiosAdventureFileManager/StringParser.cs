@@ -1,59 +1,68 @@
 ﻿using MadreDeDiosAdventure;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace MadreDeDiosAdventureFileManager
 {
-    public class StringMapper
+    public class StringParser
     {
         private readonly string _content;
 
-        public StringMapper(string content)
+        public StringParser(string content)
         {
             _content = content;
         }
 
         public Map Map()
         {
-            string[] elements = _content.Split(" - ");
-
             int width = 0, height = 0;
-            if (elements[0] == "C")
-            {
-                int.TryParse(elements[1], out width);
-                int.TryParse(elements[2], out height);
-            }
-
             var mountains = new List<Mountain>();
-            if (elements[0] == "M")
-            {
-                int.TryParse(elements[1], out int horizontalAxis);
-                int.TryParse(elements[2], out int verticalAxis);
-
-                mountains.Add(new Mountain(horizontalAxis, verticalAxis));
-            }
-
             var treasures = new List<Treasure>();
-            if (elements[0] == "T")
-            {
-                int.TryParse(elements[1], out int horizontalAxis);
-                int.TryParse(elements[2], out int verticalAxis);
-                int.TryParse(elements[3], out int count);
-
-                treasures.Add(new Treasure(horizontalAxis, verticalAxis, count));
-            }
-
             var adventurers = new List<Adventurer>();
-            if (elements[0] == "A")
+
+            using (StringReader reader = new StringReader(_content))
             {
-                string name = elements[1];
-                int.TryParse(elements[2], out int horizontalAxis);
-                int.TryParse(elements[3], out int verticalAxis);
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] elements = line.Split(" - ");
 
-                Orientation orientation = ParseOrientation(elements[4]);
-                List<Motion> motionSequence = ParseMotionSequence(elements[5]);
+                    if (elements[0] == "C")
+                    {
+                        int.TryParse(elements[1], out width);
+                        int.TryParse(elements[2], out height);
+                    }
 
-                adventurers.Add(new Adventurer(name, horizontalAxis, verticalAxis, orientation, motionSequence));
+                    else if (elements[0] == "M")
+                    {
+                        int.TryParse(elements[1], out int horizontalAxis);
+                        int.TryParse(elements[2], out int verticalAxis);
+
+                        mountains.Add(new Mountain(horizontalAxis, verticalAxis));
+                    }
+
+                    else if (elements[0] == "T")
+                    {
+                        int.TryParse(elements[1], out int horizontalAxis);
+                        int.TryParse(elements[2], out int verticalAxis);
+                        int.TryParse(elements[3], out int count);
+
+                        treasures.Add(new Treasure(horizontalAxis, verticalAxis, count));
+                    }
+
+                    else if (elements[0] == "A")
+                    {
+                        string name = elements[1];
+                        int.TryParse(elements[2], out int horizontalAxis);
+                        int.TryParse(elements[3], out int verticalAxis);
+
+                        Orientation orientation = ParseOrientation(elements[4]);
+                        List<Motion> motionSequence = ParseMotionSequence(elements[5]);
+
+                        adventurers.Add(new Adventurer(name, horizontalAxis, verticalAxis, orientation, motionSequence));
+                    }
+                }
             }
 
             return new Map
