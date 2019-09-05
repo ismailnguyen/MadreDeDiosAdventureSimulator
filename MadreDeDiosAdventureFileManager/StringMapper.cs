@@ -1,4 +1,5 @@
 ﻿using MadreDeDiosAdventure;
+using System.Collections.Generic;
 
 namespace MadreDeDiosAdventureFileManager
 {
@@ -15,14 +16,27 @@ namespace MadreDeDiosAdventureFileManager
         {
             string[] elements = _content.Split(" - ");
 
-            int.TryParse(elements[1], out int width);
+            int width = 0, height = 0;
+            if (elements[0] == "C")
+            {
+                int.TryParse(elements[1], out width);
+                int.TryParse(elements[2], out height);
+            }
 
-            int.TryParse(elements[2], out int height);
+            var mountains = new List<Mountain>();
+            if (elements[0] == "M")
+            {
+                int.TryParse(elements[1], out int horizontalAxis);
+                int.TryParse(elements[2], out int verticalAxis);
+
+                mountains.Add(new Mountain(horizontalAxis, verticalAxis));
+            }
 
             return new Map
             {
                 Width = width,
-                Height = height
+                Height = height,
+                Mountains = mountains
             };
         }
     }

@@ -50,5 +50,20 @@ namespace MadreDeDiosAdventureFileManager.Tests
             // Then :
             map.Height.Should().Be(expectedHeight);
         }
+
+        [Theory]
+        [InlineData("M - 1 - 1", 1, 1)]
+        [InlineData("M - 2 - 2", 2, 2)]
+        public void Should_map_mountains_of_map(string stringContent, int expectedHorizontalAxis, int expectedVerticalAxis)
+        {
+            // Given :
+            var stringMapper = new StringMapper(stringContent);
+
+            // When :
+            Map map = stringMapper.Map();
+
+            // Then :
+            map.Mountains.Should().Contain(new Mountain(expectedHorizontalAxis, expectedVerticalAxis));
+        }
     }
 }
