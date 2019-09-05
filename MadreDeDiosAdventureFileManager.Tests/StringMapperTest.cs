@@ -24,7 +24,7 @@ namespace MadreDeDiosAdventureFileManager.Tests
         [Theory]
         [InlineData("C - 3 - 4", 3)]
         [InlineData("C - 7 - 4", 7)]
-        public void Should_map_witdh_of_map(string stringContent, int expectedWidth)
+        public void Should_map_width_of_map(string stringContent, int expectedWidth)
         {
             // Given :
             var stringMapper = new StringMapper(stringContent);
@@ -34,6 +34,21 @@ namespace MadreDeDiosAdventureFileManager.Tests
 
             // Then :
             map.Width.Should().Be(expectedWidth);
+        }
+
+        [Theory]
+        [InlineData("C - 3 - 4", 4)]
+        [InlineData("C - 7 - 9", 9)]
+        public void Should_map_height_of_map(string stringContent, int expectedHeight)
+        {
+            // Given :
+            var stringMapper = new StringMapper(stringContent);
+
+            // When :
+            Map map = stringMapper.Map();
+
+            // Then :
+            map.Height.Should().Be(expectedHeight);
         }
     }
 }

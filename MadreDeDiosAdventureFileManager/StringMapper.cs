@@ -15,12 +15,14 @@ namespace MadreDeDiosAdventureFileManager
         {
             string[] elements = _content.Split(" - ");
 
-            int width = 0;
-            int.TryParse(elements[1], out width);
+            int.TryParse(elements[1], out int width);
+
+            int.TryParse(elements[2], out int height);
 
             return new Map
             {
-                Width = width
+                Width = width,
+                Height = height
             };
         }
     }
