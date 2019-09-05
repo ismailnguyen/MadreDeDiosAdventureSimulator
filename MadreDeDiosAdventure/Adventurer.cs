@@ -10,6 +10,7 @@ namespace MadreDeDiosAdventure
         public int VerticalAxis { get; }
         public Orientation Orientation { get; }
         public IEnumerable<Motion> MotionSequence { get; }
+        public int FoundTreasuresCount { get; private set; }
 
         public Adventurer(
             string name, 
