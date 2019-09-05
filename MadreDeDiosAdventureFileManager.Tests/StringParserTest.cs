@@ -13,10 +13,10 @@ namespace MadreDeDiosAdventureFileManager.Tests
         {
             // Given :
             string content = "";
-            var stringParser = new StringParser(content);
+            var stringParser = new StringParser();
 
             // When :
-            Map map = stringParser.Map();
+            Map map = stringParser.Parse(content);
 
             // Then :
             map.Should().NotBeNull();
@@ -28,10 +28,10 @@ namespace MadreDeDiosAdventureFileManager.Tests
         public void Should_parse_width_of_map(string stringContent, int expectedWidth)
         {
             // Given :
-            var stringParser = new StringParser(stringContent);
+            var stringParser = new StringParser();
 
             // When :
-            Map map = stringParser.Map();
+            Map map = stringParser.Parse(stringContent);
 
             // Then :
             map.Width.Should().Be(expectedWidth);
@@ -43,10 +43,10 @@ namespace MadreDeDiosAdventureFileManager.Tests
         public void Should_parse_height_of_map(string stringContent, int expectedHeight)
         {
             // Given :
-            var stringParser = new StringParser(stringContent);
+            var stringParser = new StringParser();
 
             // When :
-            Map map = stringParser.Map();
+            Map map = stringParser.Parse(stringContent);
 
             // Then :
             map.Height.Should().Be(expectedHeight);
@@ -58,10 +58,10 @@ namespace MadreDeDiosAdventureFileManager.Tests
         public void Should_parse_mountains_of_map(string stringContent, int expectedHorizontalAxis, int expectedVerticalAxis)
         {
             // Given :
-            var stringParser = new StringParser(stringContent);
+            var stringParser = new StringParser();
 
             // When :
-            Map map = stringParser.Map();
+            Map map = stringParser.Parse(stringContent);
 
             // Then :
             map.Mountains.Should().Contain(new Mountain(expectedHorizontalAxis, expectedVerticalAxis));
@@ -73,10 +73,10 @@ namespace MadreDeDiosAdventureFileManager.Tests
         public void Should_parse_treasure_of_map(string stringContent, int expectedHorizontalAxis, int expectedVerticalAxis, int expectedCount)
         {
             // Given :
-            var stringParser = new StringParser(stringContent);
+            var stringParser = new StringParser();
 
             // When :
-            Map map = stringParser.Map();
+            Map map = stringParser.Parse(stringContent);
 
             // Then :
             map.Treasures.Should().Contain(new Treasure(expectedHorizontalAxis, expectedVerticalAxis, expectedCount));
@@ -87,10 +87,10 @@ namespace MadreDeDiosAdventureFileManager.Tests
         {
             // Given :
             string stringContent = "A - Indiana - 1 - 1 - S - AADADA";
-            var stringParser = new StringParser(stringContent);
+            var stringParser = new StringParser();
 
             // When :
-            Map map = stringParser.Map();
+            Map map = stringParser.Parse(stringContent);
 
             // Then :
             string expectedName = "Indiana";
@@ -127,10 +127,10 @@ M - 2 - 1
 T - 0 - 3 - 2
 T - 1 - 3 - 3
 A - Lara - 1 - 1 - S - AADADAGGA";
-            var stringParser = new StringParser(multipleLinesStringContent);
+            var stringParser = new StringParser();
 
             // When :
-            Map map = stringParser.Map();
+            Map map = stringParser.Parse(multipleLinesStringContent);
 
             // Then :
             Map expectedMap = new Map

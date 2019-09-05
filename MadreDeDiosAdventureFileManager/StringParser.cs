@@ -5,23 +5,16 @@ using System.IO;
 
 namespace MadreDeDiosAdventureFileManager
 {
-    public class StringParser
+    public class StringParser : IContentParser
     {
-        private readonly string _content;
-
-        public StringParser(string content)
-        {
-            _content = content;
-        }
-
-        public Map Map()
+        public Map Parse(string content)
         {
             int width = 0, height = 0;
             var mountains = new List<Mountain>();
             var treasures = new List<Treasure>();
             var adventurers = new List<Adventurer>();
 
-            using (StringReader reader = new StringReader(_content))
+            using (StringReader reader = new StringReader(content))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)

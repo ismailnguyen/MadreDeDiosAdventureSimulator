@@ -12,7 +12,8 @@ namespace MadreDeDiosAdventureFileManager.Tests
         {
             // Given :
             var fileReader = Substitute.For<IFileReader>();
-            var fileConverter = new FileConverter(fileReader);
+            var contentParser = Substitute.For<IContentParser>();
+            var fileConverter = new FileConverter(fileReader, contentParser);
 
             // When :
             Map map = fileConverter.Convert();
@@ -22,17 +23,20 @@ namespace MadreDeDiosAdventureFileManager.Tests
         }
 
         [Fact]
-        public void Should_convert_file_content_to_MadreDeDios_map()
+        public void Should_call_content_parser()
         {
             // Given :
+            string dummyFileContent = "test string";
             var fileReader = Substitute.For<IFileReader>();
-            var fileConverter = new FileConverter(fileReader);
+            fileReader.Read().Returns(dummyFileContent);
+            var contentParser = Substitute.For<IContentParser>();
+            var fileConverter = new FileConverter(fileReader, contentParser);
 
             // When :
             Map map = fileConverter.Convert();
 
             // Then :
-            map.Should().NotBeNull();
+            contentParser.Received().Parse(dummyFileContent);
         }
     }
 }
