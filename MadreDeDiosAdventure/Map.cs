@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace MadreDeDiosAdventure
 {
@@ -69,6 +70,38 @@ namespace MadreDeDiosAdventure
         public override int GetHashCode()
         {
             return HashCode.Combine(Width, Height, Mountains, Treasures, Adventurers);
+        }
+
+        public override string ToString()
+        {
+            var outputStringBuilder = new StringBuilder();
+
+            // Map coordinates
+            outputStringBuilder.AppendLine($"C - { Width } - { Height }");
+
+            // Mountains coordinates
+            foreach (var mountain in Mountains)
+            {
+                outputStringBuilder.AppendLine(mountain.ToString());
+            }
+
+            // Treasures coordinates
+            outputStringBuilder.AppendLine("# {T comme Trésor} - {Axe horizontal} - {Axe vertical} - {Nb. de trésors restants}");
+
+            foreach (var treasure in Treasures)
+            {
+                outputStringBuilder.AppendLine(treasure.ToString());
+            }
+
+            // Adventurers coordinates
+            outputStringBuilder.AppendLine("# {A comme Aventurier} - {Nom de l'aventurier} - {Axe horizontal} - {Axe vertical} - {Orientation} - {Nb. trésors ramassés}");
+
+            foreach (var adventurer in Adventurers)
+            {
+                outputStringBuilder.AppendLine(adventurer.ToString());
+            }
+
+            return outputStringBuilder.ToString();
         }
     }
 }

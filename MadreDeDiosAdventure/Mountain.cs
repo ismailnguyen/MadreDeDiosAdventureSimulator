@@ -31,5 +31,10 @@ namespace MadreDeDiosAdventure
         {
             return HashCode.Combine(HorizontalAxis, VerticalAxis);
         }
+
+        public override string ToString()
+        {
+            return $"M - { HorizontalAxis } - { VerticalAxis }";
+        }
     }
 }

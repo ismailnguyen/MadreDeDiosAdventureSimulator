@@ -4,18 +4,18 @@ namespace MadreDeDiosAdventure
 {
     public class Orientation
     {
-        public static Orientation North = new Orientation("North", West, Est);
-        public static Orientation South = new Orientation("South", Est, West);
-        public static Orientation Est = new Orientation("Est", North, South);
-        public static Orientation West = new Orientation("West", South, North);
+        public static Orientation North = new Orientation("N", West, Est);
+        public static Orientation South = new Orientation("S", Est, West);
+        public static Orientation Est = new Orientation("E", North, South);
+        public static Orientation West = new Orientation("O", South, North);
 
-        private readonly string _name;
+        private readonly string _code;
         public Orientation Left { get;  }
         public Orientation Right { get; }
 
-        private Orientation(string name, Orientation left, Orientation right)
+        private Orientation(string code, Orientation left, Orientation right)
         {
-            _name = name;
+            _code = code;
             Left = left;
             Right = right;
         }
@@ -30,12 +30,17 @@ namespace MadreDeDiosAdventure
 
             var orientation = obj as Orientation;
 
-            return _name.Equals(orientation._name);
+            return _code.Equals(orientation._code);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(_name);
+            return HashCode.Combine(_code);
+        }
+
+        public override string ToString()
+        {
+            return _code;
         }
     }
 }

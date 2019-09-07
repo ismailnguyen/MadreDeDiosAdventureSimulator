@@ -44,5 +44,10 @@ namespace MadreDeDiosAdventure
         {
             return HashCode.Combine(Name);
         }
+
+        public override string ToString()
+        {
+            return $"A - { Name } - { HorizontalAxis } - { VerticalAxis } - { Orientation.ToString() } - { FoundTreasuresCount }";
+        }
     }
 }
