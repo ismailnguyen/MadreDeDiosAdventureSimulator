@@ -1,6 +1,5 @@
 ﻿using MadreDeDiosAdventure;
 using System.IO;
-using System.Text;
 
 namespace MadreDeDiosAdventureFileManager
 {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using MadreDeDiosAdventure;
 
 namespace MadreDeDiosAdventureSimulator
@@ -25,17 +24,14 @@ namespace MadreDeDiosAdventureSimulator
                 {
                     if (motion == Motion.TurnLeft)
                     {
-                        // Update orientation
-                        orientation = orientation.Left();
+                        adventurer.Turn(orientation.Left());
                     }
                     else if (motion == Motion.TurnRight)
                     {
-                        // Update orientation
-                        orientation = orientation.Right();
+                        adventurer.Turn(orientation.Right());
                     }
                     else if (motion == Motion.MoveForward)
                     {
-                        // Update axis
                         if (orientation.Equals(Orientation.North))
                         {
                             if (IsMountain(horizontalAxis, verticalAxis-1))
@@ -43,29 +39,25 @@ namespace MadreDeDiosAdventureSimulator
 
                             if (IsTreasure(horizontalAxis, verticalAxis - 1))
                             {
-                                adventurer.FoundTreasuresCount++;
+                                adventurer.CollectTreasure();
                             }
 
-                            verticalAxis--;
+                            adventurer.GoDown();
                         }
                         else if (orientation.Equals(Orientation.South))
                         {
-                            verticalAxis++;
+                            adventurer.GoUp();
                         }
                         else if (orientation.Equals(Orientation.Est))
                         {
-                            horizontalAxis++;
+                            adventurer.GoRight();
                         }
                         else if (orientation.Equals(Orientation.West))
                         {
-                            horizontalAxis--;
+                            adventurer.GoLeft();
                         }
                     }
                 }
-
-                adventurer.HorizontalAxis = horizontalAxis;
-                adventurer.VerticalAxis = verticalAxis;
-                adventurer.Orientation = orientation;
             }
         }
 

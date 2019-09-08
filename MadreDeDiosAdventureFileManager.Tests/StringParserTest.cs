@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using MadreDeDiosAdventure;
-using NSubstitute;
 using System.Collections.Generic;
 using Xunit;
 

@@ -6,11 +6,11 @@ namespace MadreDeDiosAdventure
     public class Adventurer
     {
         public string Name { get; }
-        public int HorizontalAxis { get; set; }
-        public int VerticalAxis { get; set; }
-        public Orientation Orientation { get; set; }
+        public int HorizontalAxis { get; private set; }
+        public int VerticalAxis { get; private set; }
+        public Orientation Orientation { get; private set; }
         public IEnumerable<Motion> MotionSequence { get; }
-        public int FoundTreasuresCount { get; set; }
+        public int FoundTreasuresCount { get; private set; }
 
         public Adventurer(
             string name, 
@@ -25,6 +25,36 @@ namespace MadreDeDiosAdventure
             VerticalAxis = verticalAxis;
             Orientation = orientation;
             MotionSequence = motionSequence;
+        }
+
+        public void Turn(Orientation orientation)
+        {
+            Orientation = orientation;
+        }
+
+        public void GoUp()
+        {
+            VerticalAxis++;
+        }
+
+        public void GoDown()
+        {
+            VerticalAxis--;
+        }
+
+        public void GoRight()
+        {
+            HorizontalAxis++;
+        }
+
+        public void GoLeft()
+        {
+            HorizontalAxis--;
+        }
+
+        public void CollectTreasure()
+        {
+            FoundTreasuresCount++;
         }
 
         public override bool Equals(object obj)

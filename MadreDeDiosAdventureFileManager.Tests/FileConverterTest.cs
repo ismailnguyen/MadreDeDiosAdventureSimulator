@@ -1,5 +1,4 @@
-﻿using FluentAssertions;
-using MadreDeDiosAdventure;
+﻿using MadreDeDiosAdventure;
 using NSubstitute;
 using Xunit;
 
