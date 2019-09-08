@@ -11,7 +11,7 @@ namespace MadreDeDiosAdventure
         public int Height { get; }
 
         public IEnumerable<Mountain> Mountains { get; }
-        public IEnumerable<Treasure> Treasures { get; }
+        public IEnumerable<Treasure> Treasures { get; private set; }
         public IEnumerable<Adventurer> Adventurers { get; }
 
         public Map(
@@ -56,6 +56,20 @@ namespace MadreDeDiosAdventure
             return true;
         }
 
+        public void RemoveTreasure(int horizontalAxis, int verticalAxis)
+        {
+            var foundTreasure = Treasures.First(treasure => treasure.HorizontalAxis == horizontalAxis && treasure.VerticalAxis == verticalAxis);
+
+            if (foundTreasure.Count > 1)
+            {
+                foundTreasure.Count--;
+            }
+            else
+            {
+                Treasures = Treasures.Where(treasure => !treasure.Equals(foundTreasure));
+            }
+        }
+
         private bool AreEquals<T>(IEnumerable<T> list1, IEnumerable<T> list2)
         {
             if (list1.Count() != list2.Count())
@@ -88,7 +102,7 @@ namespace MadreDeDiosAdventure
             // Treasures coordinates
             outputStringBuilder.AppendLine("# {T comme Trésor} - {Axe horizontal} - {Axe vertical} - {Nb. de trésors restants}");
 
-            foreach (var treasure in Treasures)
+            foreach (var treasure in Treasures.Where(treasure => treasure.Count > 0))
             {
                 outputStringBuilder.AppendLine(treasure.ToString());
             }

@@ -6,7 +6,7 @@ namespace MadreDeDiosAdventure
     {
         public int HorizontalAxis { get; }
         public int VerticalAxis { get; }
-        public int Count { get; }
+        public int Count { get; set; }
 
         public Treasure(int horizontalAxis, int verticalAxis, int count)
         {
