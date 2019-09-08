@@ -10,14 +10,49 @@ namespace MadreDeDiosAdventure
         public static Orientation West = new Orientation("O", South, North);
 
         private readonly string _code;
-        public Orientation Left { get;  }
-        public Orientation Right { get; }
 
         private Orientation(string code, Orientation left, Orientation right)
         {
             _code = code;
-            Left = left;
-            Right = right;
+        }
+
+        public Orientation Right()
+        {
+            switch (_code)
+            {
+                case "N":
+                    return Est;
+
+                case "E":
+                    return South;
+
+                case "S":
+                    return West;
+
+                case "O":
+                default:
+                    return North;
+            }
+        }
+
+        public Orientation Left()
+        {
+            switch (_code)
+            {
+                case "N":
+                    return West;
+
+                case "E":
+                    return North;
+
+                case "S":
+                    return Est;
+
+                case "O":
+                default:
+                    return South;
+
+            }
         }
 
         public override bool Equals(object obj)

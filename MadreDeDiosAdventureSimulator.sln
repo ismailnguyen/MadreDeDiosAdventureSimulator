@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadreDeDiosAdventureFileMan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadreDeDiosAdventure", "MadreDeDiosAdventure\MadreDeDiosAdventure.csproj", "{636D47B0-2DA3-4331-A17B-83BCD1BEE0E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadreDeDiosAdventureSimulator.Console", "MadreDeDiosAdventureSimulator.Console\MadreDeDiosAdventureSimulator.Console.csproj", "{833DBBDB-B857-41B3-885F-2A9B345D0356}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadreDeDiosAdventure.Tests", "MadreDeDiosAdventure.Tests\MadreDeDiosAdventure.Tests.csproj", "{3039EEB2-9449-4321-A96C-7A628356A1EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,14 @@ Global
 		{636D47B0-2DA3-4331-A17B-83BCD1BEE0E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{636D47B0-2DA3-4331-A17B-83BCD1BEE0E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{636D47B0-2DA3-4331-A17B-83BCD1BEE0E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{833DBBDB-B857-41B3-885F-2A9B345D0356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833DBBDB-B857-41B3-885F-2A9B345D0356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833DBBDB-B857-41B3-885F-2A9B345D0356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833DBBDB-B857-41B3-885F-2A9B345D0356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3039EEB2-9449-4321-A96C-7A628356A1EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3039EEB2-9449-4321-A96C-7A628356A1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3039EEB2-9449-4321-A96C-7A628356A1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3039EEB2-9449-4321-A96C-7A628356A1EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{842E327A-4804-4B6D-AF8A-E0B508C42273} = {EA498166-ED44-453B-9982-7D8A9A829F2C}
 		{C6F8FF3C-CF3B-4F9A-AEB9-6458AD816E51} = {EA498166-ED44-453B-9982-7D8A9A829F2C}
+		{3039EEB2-9449-4321-A96C-7A628356A1EB} = {EA498166-ED44-453B-9982-7D8A9A829F2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4870FFBC-53FC-4C34-80B3-A64766248710}

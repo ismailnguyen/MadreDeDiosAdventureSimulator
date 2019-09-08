@@ -26,12 +26,12 @@ namespace MadreDeDiosAdventureSimulator
                     if (motion == Motion.TurnLeft)
                     {
                         // Update orientation
-                        orientation = orientation.Left;
+                        orientation = orientation.Left();
                     }
                     else if (motion == Motion.TurnRight)
                     {
                         // Update orientation
-                        orientation = orientation.Right;
+                        orientation = orientation.Right();
                     }
                     else if (motion == Motion.MoveForward)
                     {

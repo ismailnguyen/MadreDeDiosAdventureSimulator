@@ -18,11 +18,6 @@ namespace MadreDeDiosAdventureFileManager
             if (map == null)
                 return;
 
-            if (!File.Exists(_outputFileName))
-            {
-                File.Create(_outputFileName);
-            }
-
             string outputContent = map.ToString();
 
             File.WriteAllText(_outputFileName, outputContent);
