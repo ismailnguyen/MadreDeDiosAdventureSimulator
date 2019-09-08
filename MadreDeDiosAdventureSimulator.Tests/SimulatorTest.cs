@@ -18,20 +18,19 @@ namespace MadreDeDiosAdventureSimulator.Tests
                 height: 4,
                 mountains: new List<Mountain>
                 {
-                    new Mountain(1, 0),
-                    new Mountain(2, 1)
+                    new Mountain(new Position(1, 0)),
+                    new Mountain(new Position(2, 1))
                 },
                 treasures: new List<Treasure>
                 {
-                    new Treasure(0, 3, 2),
-                    new Treasure(1, 3, 3)
+                    new Treasure(new Position(0, 3), 2),
+                    new Treasure(new Position(1, 3), 3)
                 },
                 adventurers: new List<Adventurer>
                 {
                     new Adventurer(
                         name: "Lara",
-                        horizontalAxis: 1,
-                        verticalAxis: 1,
+                        position: new Position(1, 1),
                         orientation: Orientation.South,
                         motionSequence: new List<Motion>
                         {
@@ -55,43 +54,12 @@ namespace MadreDeDiosAdventureSimulator.Tests
             simulator.Simulate();
 
             // Then :
-            var expectedFinalMap = new Map(
-                width: 3,
-                height: 4,
-                mountains: new List<Mountain>
-                {
-                    new Mountain(1, 0),
-                    new Mountain(2, 1)
-                },
-                treasures: new List<Treasure>
-                {
-                    new Treasure(1, 3, 2)
-                },
-                adventurers: new List<Adventurer>
-                {
-                    new Adventurer(
-                        name: "Lara",
-                        horizontalAxis: 0,
-                        verticalAxis: 3,
-                        orientation: Orientation.South,
-                        motionSequence: new List<Motion>
-                        {
-                            Motion.MoveForward,
-                            Motion.MoveForward,
-                            Motion.TurnRight,
-                            Motion.MoveForward,
-                            Motion.TurnRight,
-                            Motion.MoveForward,
-                            Motion.TurnLeft,
-                            Motion.TurnLeft,
-                            Motion.MoveForward
-                        }
-                    )
-                }
-            );
-
-            simulator.Map.Should().Be(expectedFinalMap);
+            simulator.Map.Adventurers.First(adventurer => adventurer.Name.Equals("Lara")).Position.Should().Be(new Position(0, 3));
+            simulator.Map.Adventurers.First(adventurer => adventurer.Name.Equals("Lara")).Orientation.Should().Be(Orientation.South);
             simulator.Map.Adventurers.First(adventurer => adventurer.Name.Equals("Lara")).FoundTreasuresCount.Should().Be(3);
+
+            simulator.Map.Treasures.Should().HaveCount(1);
+            simulator.Map.Treasures.First(treasure => treasure.Position.Equals(new Position(1, 3))).Count.Should().Be(2);
         }
     }
 }

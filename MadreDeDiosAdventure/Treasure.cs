@@ -4,14 +4,12 @@ namespace MadreDeDiosAdventure
 {
     public class Treasure
     {
-        public int HorizontalAxis { get; }
-        public int VerticalAxis { get; }
+        public Position Position { get; }
         public int Count { get; set; }
 
-        public Treasure(int horizontalAxis, int verticalAxis, int count)
+        public Treasure(Position position, int count)
         {
-            HorizontalAxis = horizontalAxis;
-            VerticalAxis = verticalAxis;
+            Position = position;
             Count = count;
         }
 
@@ -25,19 +23,18 @@ namespace MadreDeDiosAdventure
 
             var treasure = obj as Treasure;
 
-            return HorizontalAxis == treasure.HorizontalAxis
-                && VerticalAxis == treasure.VerticalAxis
+            return Position == treasure.Position
                 && Count == treasure.Count;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(HorizontalAxis, VerticalAxis, Count);
+            return HashCode.Combine(Position, Count);
         }
 
         public override string ToString()
         {
-            return $"T - { HorizontalAxis } - { VerticalAxis } - { Count }";
+            return $"T - { Position } - { Count }";
         }
     }
 }

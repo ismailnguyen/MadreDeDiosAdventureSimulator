@@ -6,94 +6,32 @@ namespace MadreDeDiosAdventure.Tests
 {
     public class AdventurerTest
     {
-        [Theory]
-        [InlineData(0, 1)]
-        public void GoUp_should_increment_vertical_axis(int initialVerticalAxis, int finalExpectedVerticalAxis)
+        [Fact]
+        public void Move_should_update_position()
         {
             // Given :
             Adventurer adventurer = new Adventurer(
                 "Ismaïl",
-                0,
-                initialVerticalAxis,
+                new Position(0, 0),
                 Orientation.North,
                 new List<Motion> { }
             );
 
             // When :
-            adventurer.GoUp();
+            var positionToMove = new Position(0, 1);
+            adventurer.Move(positionToMove);
 
             // Then :
-            adventurer.VerticalAxis.Should().Be(finalExpectedVerticalAxis);
-        }
-
-        [Theory]
-        [InlineData(0, -1)]
-        public void GoDown_should_decrement_vertical_axis(int initialVerticalAxis, int finalExpectedVerticalAxis)
-        {
-            // Given :
-            Adventurer adventurer = new Adventurer(
-                "Ismaïl",
-                0,
-                initialVerticalAxis,
-                Orientation.North,
-                new List<Motion> { }
-            );
-
-            // When :
-            adventurer.GoDown();
-
-            // Then :
-            adventurer.VerticalAxis.Should().Be(finalExpectedVerticalAxis);
-        }
-
-        [Theory]
-        [InlineData(0, 1)]
-        public void GoRight_should_increment_horizontal_axis(int initialHorizontalAxis, int finalExpectedHorizontalAxis)
-        {
-            // Given :
-            Adventurer adventurer = new Adventurer(
-                "Ismaïl",
-                initialHorizontalAxis,
-                0,
-                Orientation.North,
-                new List<Motion> { }
-            );
-
-            // When :
-            adventurer.GoRight();
-
-            // Then :
-            adventurer.HorizontalAxis.Should().Be(finalExpectedHorizontalAxis);
-        }
-
-        [Theory]
-        [InlineData(0, -1)]
-        public void GoLeft_should_decrement_horizontal_axis(int initialHorizontalAxis, int finalExpectedHorizontalAxis)
-        {
-            // Given :
-            Adventurer adventurer = new Adventurer(
-                "Ismaïl",
-                initialHorizontalAxis,
-                0,
-                Orientation.North,
-                new List<Motion> { }
-            );
-
-            // When :
-            adventurer.GoLeft();
-
-            // Then :
-            adventurer.HorizontalAxis.Should().Be(finalExpectedHorizontalAxis);
+            adventurer.Position.Should().Be(positionToMove);
         }
 
         [Fact]
-        public void CollecTreasure_should_increment_found_treasures_counter()
+        public void CollectTreasure_should_increment_found_treasures_counter()
         {
             // Given :
             Adventurer adventurer = new Adventurer(
                 "Ismaïl",
-                0,
-                0,
+                new Position(0, 0),
                 Orientation.North,
                 new List<Motion> { }
             );
@@ -111,8 +49,7 @@ namespace MadreDeDiosAdventure.Tests
             // Given :
             Adventurer adventurer = new Adventurer(
                 "Ismaïl",
-                0,
-                0,
+                new Position(0, 0),
                 Orientation.North,
                 new List<Motion> { }
             );

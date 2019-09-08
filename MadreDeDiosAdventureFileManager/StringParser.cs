@@ -31,7 +31,11 @@ namespace MadreDeDiosAdventureFileManager
                         int.TryParse(elements[1], out int horizontalAxis);
                         int.TryParse(elements[2], out int verticalAxis);
 
-                        mountains.Add(new Mountain(horizontalAxis, verticalAxis));
+                        mountains.Add(
+                            new Mountain(
+                                new Position(horizontalAxis, verticalAxis)
+                            )
+                        );
                     }
 
                     else if (elements[0] == "T")
@@ -40,7 +44,12 @@ namespace MadreDeDiosAdventureFileManager
                         int.TryParse(elements[2], out int verticalAxis);
                         int.TryParse(elements[3], out int count);
 
-                        treasures.Add(new Treasure(horizontalAxis, verticalAxis, count));
+                        treasures.Add(
+                            new Treasure(
+                                new Position(horizontalAxis, verticalAxis),
+                                count
+                            )
+                        );
                     }
 
                     else if (elements[0] == "A")
@@ -52,7 +61,14 @@ namespace MadreDeDiosAdventureFileManager
                         Orientation orientation = ParseOrientation(elements[4]);
                         List<Motion> motionSequence = ParseMotionSequence(elements[5]);
 
-                        adventurers.Add(new Adventurer(name, horizontalAxis, verticalAxis, orientation, motionSequence));
+                        adventurers.Add(
+                            new Adventurer(
+                                name, 
+                                new Position(horizontalAxis, verticalAxis), 
+                                orientation, 
+                                motionSequence
+                            )
+                        );
                     }
                 }
             }

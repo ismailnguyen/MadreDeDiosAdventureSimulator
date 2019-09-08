@@ -6,23 +6,20 @@ namespace MadreDeDiosAdventure
     public class Adventurer
     {
         public string Name { get; }
-        public int HorizontalAxis { get; private set; }
-        public int VerticalAxis { get; private set; }
+        public Position Position { get; private set;}
         public Orientation Orientation { get; private set; }
         public IEnumerable<Motion> MotionSequence { get; }
         public int FoundTreasuresCount { get; private set; }
 
         public Adventurer(
-            string name, 
-            int horizontalAxis, 
-            int verticalAxis, 
+            string name,
+            Position position, 
             Orientation orientation, 
             IEnumerable<Motion> motionSequence
         )
         {
             Name = name;
-            HorizontalAxis = horizontalAxis;
-            VerticalAxis = verticalAxis;
+            Position = position;
             Orientation = orientation;
             MotionSequence = motionSequence;
         }
@@ -32,24 +29,9 @@ namespace MadreDeDiosAdventure
             Orientation = orientation;
         }
 
-        public void GoUp()
+        public void Move(Position position)
         {
-            VerticalAxis++;
-        }
-
-        public void GoDown()
-        {
-            VerticalAxis--;
-        }
-
-        public void GoRight()
-        {
-            HorizontalAxis++;
-        }
-
-        public void GoLeft()
-        {
-            HorizontalAxis--;
+            Position = position;
         }
 
         public void CollectTreasure()
@@ -77,7 +59,7 @@ namespace MadreDeDiosAdventure
 
         public override string ToString()
         {
-            return $"A - { Name } - { HorizontalAxis } - { VerticalAxis } - { Orientation.ToString() } - { FoundTreasuresCount }";
+            return $"A - { Name } - { Position } - { Orientation } - { FoundTreasuresCount }";
         }
     }
 }

@@ -18,83 +18,43 @@ namespace MadreDeDiosAdventureSimulator
             {
                 foreach (var motion in adventurer.MotionSequence)
                 {
-                    Orientation orientation = adventurer.Orientation;
+                    Orientation currentOrientation = adventurer.Orientation;
 
                     if (motion == Motion.TurnLeft)
                     {
-                        adventurer.Turn(orientation.Left());
+                        adventurer.Turn(currentOrientation.Left());
                     }
                     else if (motion == Motion.TurnRight)
                     {
-                        adventurer.Turn(orientation.Right());
+                        adventurer.Turn(currentOrientation.Right());
                     }
                     else if (motion == Motion.MoveForward)
                     {
-                        if (orientation.Equals(Orientation.North))
+                        Position nextPosition = adventurer.Position.Next(currentOrientation);
+
+                        if (IsThereAMountain(nextPosition))
+                            continue;
+
+                        if (IsThereATreasure(nextPosition))
                         {
-                            if (IsThereAMountain(adventurer.HorizontalAxis, adventurer.VerticalAxis - 1))
-                                continue;
-
-                            if (IsThereATreasure(adventurer.HorizontalAxis, adventurer.VerticalAxis - 1))
-                            {
-                                adventurer.CollectTreasure();
-                                Map.RemoveTreasure(adventurer.HorizontalAxis, adventurer.VerticalAxis - 1);
-                            }
-
-                            adventurer.GoDown();
+                            adventurer.CollectTreasure();
+                            Map.RemoveTreasure(nextPosition);
                         }
-                        else if (orientation.Equals(Orientation.South))
-                        {
-                            if (IsThereAMountain(adventurer.HorizontalAxis, adventurer.VerticalAxis + 1))
-                                continue;
 
-                            if (IsThereATreasure(adventurer.HorizontalAxis, adventurer.VerticalAxis + 1))
-                            {
-                                adventurer.CollectTreasure();
-                                Map.RemoveTreasure(adventurer.HorizontalAxis, adventurer.VerticalAxis + 1);
-                            }
-
-                            adventurer.GoUp();
-                        }
-                        else if (orientation.Equals(Orientation.Est))
-                        {
-                            if (IsThereAMountain(adventurer.HorizontalAxis + 1, adventurer.VerticalAxis))
-                                continue;
-
-                            if (IsThereATreasure(adventurer.HorizontalAxis + 1, adventurer.VerticalAxis))
-                            {
-                                adventurer.CollectTreasure();
-                                Map.RemoveTreasure(adventurer.HorizontalAxis + 1, adventurer.VerticalAxis);
-                            }
-
-                            adventurer.GoRight();
-                        }
-                        else if (orientation.Equals(Orientation.West))
-                        {
-                            if (IsThereAMountain(adventurer.HorizontalAxis - 1, adventurer.VerticalAxis))
-                                continue;
-
-                            if (IsThereATreasure(adventurer.HorizontalAxis - 1, adventurer.VerticalAxis))
-                            {
-                                adventurer.CollectTreasure();
-                                Map.RemoveTreasure(adventurer.HorizontalAxis - 1, adventurer.VerticalAxis);
-                            }
-
-                            adventurer.GoLeft();
-                        }
+                        adventurer.Move(nextPosition);
                     }
                 }
             }
         }
 
-        private bool IsThereATreasure(int horizontalAxis, int verticalAxis)
+        private bool IsThereATreasure(Position position)
         {
-            return Map.Treasures.Any(treasure => treasure.HorizontalAxis == horizontalAxis && treasure.VerticalAxis == verticalAxis);
+            return Map.Treasures.Any(treasure => treasure.Position.Equals(position));
         }
 
-        private bool IsThereAMountain(int horizontalAxis, int verticalAxis)
+        private bool IsThereAMountain(Position position)
         {
-            return Map.Mountains.Any(mountain => mountain.HorizontalAxis == horizontalAxis && mountain.VerticalAxis == verticalAxis);
+            return Map.Mountains.Any(mountain => mountain.Position.Equals(position));
         }
     }
 }

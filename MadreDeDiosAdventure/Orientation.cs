@@ -4,14 +4,14 @@ namespace MadreDeDiosAdventure
 {
     public class Orientation
     {
-        public static Orientation North = new Orientation("N", West, Est);
-        public static Orientation South = new Orientation("S", Est, West);
-        public static Orientation Est = new Orientation("E", North, South);
-        public static Orientation West = new Orientation("O", South, North);
+        public static Orientation North = new Orientation("N");
+        public static Orientation South = new Orientation("S");
+        public static Orientation Est = new Orientation("E");
+        public static Orientation West = new Orientation("O");
 
         private readonly string _code;
 
-        private Orientation(string code, Orientation left, Orientation right)
+        private Orientation(string code)
         {
             _code = code;
         }
@@ -51,7 +51,6 @@ namespace MadreDeDiosAdventure
                 case "O":
                 default:
                     return South;
-
             }
         }
 

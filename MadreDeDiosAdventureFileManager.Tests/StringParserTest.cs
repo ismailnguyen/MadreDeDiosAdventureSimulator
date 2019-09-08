@@ -63,7 +63,7 @@ namespace MadreDeDiosAdventureFileManager.Tests
             Map map = stringParser.Parse(stringContent);
 
             // Then :
-            map.Mountains.Should().Contain(new Mountain(expectedHorizontalAxis, expectedVerticalAxis));
+            map.Mountains.Should().Contain(new Mountain(new Position(expectedHorizontalAxis, expectedVerticalAxis)));
         }
 
         [Theory]
@@ -78,7 +78,7 @@ namespace MadreDeDiosAdventureFileManager.Tests
             Map map = stringParser.Parse(stringContent);
 
             // Then :
-            map.Treasures.Should().Contain(new Treasure(expectedHorizontalAxis, expectedVerticalAxis, expectedCount));
+            map.Treasures.Should().Contain(new Treasure(new Position(expectedHorizontalAxis, expectedVerticalAxis), expectedCount));
         }
 
         [Fact]
@@ -109,8 +109,7 @@ namespace MadreDeDiosAdventureFileManager.Tests
             map.Adventurers.Should().Contain(
                 new Adventurer(
                     expectedName,
-                    expectedHorizontalAxis,
-                    expectedVerticalAxis,
+                    new Position(expectedHorizontalAxis, expectedVerticalAxis),
                     expectedOrientation,
                     expectedMotionSequence
                 ));
@@ -138,20 +137,19 @@ A - Lara - 1 - 1 - S - AADADAGGA";
                 4,
                 new List<Mountain>
                 {
-                    new Mountain(1, 0),
-                    new Mountain(2, 1)
+                    new Mountain(new Position(1, 0)),
+                    new Mountain(new Position(2, 1))
                 },
                 new List<Treasure>
                 {
-                    new Treasure(0, 3, 2),
-                    new Treasure(1, 3, 3)
+                    new Treasure(new Position(0, 3), 2),
+                    new Treasure(new Position(1, 3), 3)
                 },
                 new List<Adventurer>
                 {
                     new Adventurer(
                         "Lara",
-                        1, 
-                        1, 
+                        new Position(1, 1), 
                         Orientation.South, 
                         new List<Motion>
                         {

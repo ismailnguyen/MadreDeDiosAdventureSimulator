@@ -56,9 +56,9 @@ namespace MadreDeDiosAdventure
             return true;
         }
 
-        public void RemoveTreasure(int horizontalAxis, int verticalAxis)
+        public void RemoveTreasure(Position position)
         {
-            var foundTreasure = Treasures.First(treasure => treasure.HorizontalAxis == horizontalAxis && treasure.VerticalAxis == verticalAxis);
+            var foundTreasure = Treasures.First(treasure => treasure.Position.Equals(position));
 
             if (foundTreasure.Count > 1)
             {
